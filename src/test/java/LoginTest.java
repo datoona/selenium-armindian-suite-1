@@ -1,3 +1,4 @@
+import base.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -14,9 +15,9 @@ public class LoginTest {
 
     @BeforeMethod
     public void setup() {
-        System.setProperty("webdriver.gecko.driver",
-                "/Users/sargis/dev/selenium-drivers/geckodriver");
-        driver = new FirefoxDriver();
+        System.setProperty("webdriver.chrome.driver",
+                "./src/main/resources/drivers/chromedriver-mac-64bit");
+        driver = new ChromeDriver();
     }
 
     @Test
