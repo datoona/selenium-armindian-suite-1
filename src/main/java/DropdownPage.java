@@ -7,8 +7,8 @@ import org.openqa.selenium.support.ui.Select;
 import java.util.List;
 
 public class DropdownPage extends BasePage {
-    public DropdownPage(WebDriver driver) {
-        super(driver);
+    public DropdownPage() {
+        super();
         driver.get(getUrl());
     }
 

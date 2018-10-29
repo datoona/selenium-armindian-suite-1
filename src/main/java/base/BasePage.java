@@ -7,11 +7,12 @@ import org.openqa.selenium.WebElement;
 
 import java.util.List;
 
+
 public abstract class BasePage {
     protected WebDriver driver;
 
-    public BasePage(WebDriver driver) {
-        this.driver = driver;
+    public BasePage() {
+        this.driver = DriverHelper.getDriver();
     }
 
     public abstract String getUrl();

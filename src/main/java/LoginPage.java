@@ -8,8 +8,8 @@ public class LoginPage extends BasePage {
     private By signInButton = By.name("commit");
     private By errorMessage = By.cssSelector("#js-flash-container .flash-error");
 
-    public LoginPage(WebDriver driver) {
-        super(driver);
+    public LoginPage() {
+        super();
         driver.get(getUrl());
     }
 
