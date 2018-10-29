@@ -20,8 +20,7 @@ public class DropdownTest {
     public void successLogin() {
         DropdownPage dropdownPage = new DropdownPage(driver);
 
-        dropdownPage.selectOption(1);
-        dropdownPage.isOptionEnabled(0);
+        dropdownPage.selectOptionCustom("Option 1");
 
 
 
