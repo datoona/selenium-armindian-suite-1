@@ -16,7 +16,6 @@ public class LoadingPage extends BasePage {
 
     public LoadingPage() {
         super();
-        PageFactory.initElements(driver, this);
         driver.get(getUrl());
     }
 

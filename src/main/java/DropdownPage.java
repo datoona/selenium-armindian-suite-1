@@ -20,7 +20,6 @@ public class DropdownPage extends BasePage {
 
     public DropdownPage() {
         super();
-        PageFactory.initElements(driver, this);
         driver.get(getUrl());
     }
 
