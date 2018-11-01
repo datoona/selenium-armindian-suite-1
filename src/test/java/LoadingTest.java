@@ -7,7 +7,7 @@ public class LoadingTest extends SeleniumBase {
 
     @Test
     public void loadingText() {
-        LoadingPage loadingPage = new LoadingPage();
+        LoadingPage loadingPage = (LoadingPage) new LoadingPage().get();
 
         loadingPage.clickStart();
         assertTrue(loadingPage.isFinishTextDisplayed(), "Finish Text should be Visible!");

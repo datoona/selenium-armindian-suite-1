@@ -31,4 +31,9 @@ public class LoadingPage extends BasePage {
         return find(finishText).getText();
     }
 
+    @Override
+    public void isLoaded() {
+        WaitHelper.getWait().waitForElementToBeVisible(startButton);
+    }
+
 }
