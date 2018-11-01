@@ -20,7 +20,7 @@ public class WaitHelper {
 
     public void waitForElementToBeVisible(WebElement element) {
         new WebDriverWait(getDriver(), 10)
-                .until(webDriver -> element);
+                .until(ExpectedConditions.visibilityOf(element));
     }
 
 }

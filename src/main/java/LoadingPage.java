@@ -2,14 +2,21 @@ import base.BasePage;
 import base.WaitHelper;
 import com.sun.xml.internal.rngom.parse.host.Base;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 public class LoadingPage extends BasePage {
+    @FindBy(css = "#start button")
+    private WebElement startButton;
 
-    private By startButton = By.cssSelector("#start button");
-    private By finishText = By.cssSelector("#finish h4");
+    @FindBy(css = "#finish h4")
+    private WebElement finishText;
+
 
     public LoadingPage() {
         super();
+        PageFactory.initElements(driver, this);
         driver.get(getUrl());
     }
 
@@ -28,7 +35,7 @@ public class LoadingPage extends BasePage {
     }
 
     public String getFinishText() {
-        return find(finishText).getText();
+        return finishText.getText();
     }
 
     @Override
