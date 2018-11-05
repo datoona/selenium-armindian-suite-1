@@ -10,6 +10,9 @@ public class LoadingPage extends BasePage {
     @FindBy(css = "#finish h4")
     private WebElement finishText;
 
+    @FindBy(css = "#finish1 h4")
+    private WebElement noExist;
+
 
     public LoadingPage() {
         super();
