@@ -36,5 +36,6 @@ public class DriverHelper {
 
     public void quitDriver(WebDriver driver) {
         driver.quit();
+        driverThread.remove();
     }
 }
