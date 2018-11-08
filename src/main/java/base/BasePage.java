@@ -15,7 +15,7 @@ public abstract class BasePage<T extends LoadableComponent<T>> extends LoadableC
     protected WebDriver driver;
 
     public BasePage() {
-        this.driver = DriverHelper.getDriver();
+        this.driver = DriverHelper.get().getDriver();
         PageFactory.initElements(driver, this);
     }
 

@@ -22,26 +22,26 @@ public class CheckboxesTest extends SeleniumBase {
 
     }
 
-    @Test
-    public void checkboxesByText() {
-        CheckBoxPage checkBoxPage = new CheckBoxPage();
-
-        assertFalse(checkBoxPage.isCheckboxChecked("checkbox 1"),
-                "First checkbox was checked!");
-        assertTrue(checkBoxPage.isCheckboxChecked("checkbox 2"),
-                "Second checkbox was not checked!");
-
-        checkBoxPage.clickCheckbox("checkbox 1");
-        assertTrue(checkBoxPage.isCheckboxChecked("checkbox 1"),
-                "First checkbox was not checked!");
-        assertTrue(checkBoxPage.isCheckboxChecked("checkbox 2"),
-                "Second checkbox was not checked!");
-
-        checkBoxPage.clickCheckbox("checkbox 2");
-        assertTrue(checkBoxPage.isCheckboxChecked("checkbox 1"),
-                "First checkbox was not checked!");
-        assertFalse(checkBoxPage.isCheckboxChecked("checkbox 2"),
-                "Second checkbox was checked!");
-
-    }
+//    @Test
+//    public void checkboxesByText() {
+//        CheckBoxPage checkBoxPage = new CheckBoxPage();
+//
+//        assertFalse(checkBoxPage.isCheckboxChecked("checkbox 1"),
+//                "First checkbox was checked!");
+//        assertTrue(checkBoxPage.isCheckboxChecked("checkbox 2"),
+//                "Second checkbox was not checked!");
+//
+//        checkBoxPage.clickCheckbox("checkbox 1");
+//        assertTrue(checkBoxPage.isCheckboxChecked("checkbox 1"),
+//                "First checkbox was not checked!");
+//        assertTrue(checkBoxPage.isCheckboxChecked("checkbox 2"),
+//                "Second checkbox was not checked!");
+//
+//        checkBoxPage.clickCheckbox("checkbox 2");
+//        assertTrue(checkBoxPage.isCheckboxChecked("checkbox 1"),
+//                "First checkbox was not checked!");
+//        assertFalse(checkBoxPage.isCheckboxChecked("checkbox 2"),
+//                "Second checkbox was checked!");
+//
+//    }
 }
