@@ -2,8 +2,6 @@ import base.BasePage;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import java.security.PublicKey;
-
 public class DragAndDropPage extends BasePage {
     @FindBy(id = "draggable")
     private WebElement columnA;
