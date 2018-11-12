@@ -26,7 +26,9 @@ public abstract class BasePage<T extends LoadableComponent<T>> extends LoadableC
 
     @Override
     protected void isLoaded() throws Error {
-        driver.getCurrentUrl().equals(getUrl());
+        if (!driver.getCurrentUrl().equals(getUrl())) {
+            throw new Error (getUrl() +" is not loaded");
+        };
     }
 
     public abstract String getUrl();

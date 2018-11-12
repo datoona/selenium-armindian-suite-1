@@ -7,7 +7,7 @@ public class HoverTest extends SeleniumBase {
 
     @Test
     public void hoverTest() {
-        HoverPage hoverPage = new HoverPage();
+        HoverPage hoverPage = (HoverPage) new HoverPage().get();
         assertFalse(hoverPage.isFooterDisplayed());
 
         hoverPage.hoverElement();
