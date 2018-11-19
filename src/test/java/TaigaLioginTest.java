@@ -8,13 +8,20 @@ import org.testng.annotations.Test;
 
 import java.io.IOException;
 
+import static org.testng.Assert.assertTrue;
+
 public class TaigaLioginTest extends SeleniumBase {
 
     @Test
     public void loginViaApi() throws IOException {
         TaigaLoginPage taigaLoginPage = new TaigaLoginPage();
         login("sqa.days@yandex.ru", "Armenia2018");
-         taigaLoginPage = new TaigaLoginPage();
+
+        TaigaHomePage taigaHomePage = (TaigaHomePage) new TaigaHomePage().get();
+        taigaHomePage.clickProjectsIcon();
+
+        assertTrue(taigaHomePage.getCurrentUrl().contains("projects"),
+                "URL is not correct");
 
     }
 
