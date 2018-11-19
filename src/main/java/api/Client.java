@@ -9,7 +9,7 @@ import java.io.IOException;
 public class Client {
 
     public static void main(String[] args) throws IOException {
-        JsonObject jsonObject = getAccessToken("sqa.days@yandex.ru", "Armenia2018");
+        JsonObject jsonObject = login("sqa.days@yandex.ru", "Armenia2018");
         System.out.println(jsonObject);
         OkHttpClient client = new OkHttpClient();
         MediaType mediaType = MediaType.parse("application/json");
@@ -29,11 +29,12 @@ public class Client {
 
     }
 
-    public static JsonObject getAccessToken(String email, String password) throws IOException {
+    public static JsonObject login(String email, String password) throws IOException {
         OkHttpClient client = new OkHttpClient();
 
         MediaType mediaType = MediaType.parse("application/json");
-        RequestBody body = RequestBody.create(mediaType, "{\"username\":\""+ email +"\",\"password\":\""+ password +"\",\"type\":\"normal\"}");
+        RequestBody body = RequestBody.create(mediaType,
+                "{\"username\":\""+ email +"\",\"password\":\""+ password +"\",\"type\":\"normal\"}");
         Request request = new Request.Builder()
                 .url("https://api.taiga.io/api/v1/auth")
                 .post(body)
