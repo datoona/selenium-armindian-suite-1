@@ -1,6 +1,7 @@
 import api.Client;
 import base.DriverHelper;
 import com.google.gson.JsonObject;
+import org.openqa.selenium.Cookie;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterMethod;
@@ -18,7 +19,6 @@ public class SeleniumBase {
 
     public void login(String username, String password) throws IOException {
         JsonObject loginJson = Client.login(username, password);
-
         ((JavascriptExecutor) driver)
                 .executeScript(
                         "window.localStorage.setItem('token','" + loginJson.get("auth_token") + "');");

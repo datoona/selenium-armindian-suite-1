@@ -8,15 +8,15 @@ import org.testng.annotations.Test;
 
 import java.io.IOException;
 
+import static java.sql.DriverManager.getDriver;
 import static org.testng.Assert.assertTrue;
 
-public class TaigaLioginTest extends SeleniumBase {
+public class TaigaLoginTest extends SeleniumBase {
 
     @Test
     public void loginViaApi() throws IOException {
         TaigaLoginPage taigaLoginPage = new TaigaLoginPage();
         login("sqa.days@yandex.ru", "Armenia2018");
-
         TaigaHomePage taigaHomePage = (TaigaHomePage) new TaigaHomePage().get();
         taigaHomePage.clickProjectsIcon();
 
