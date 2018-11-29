@@ -19,6 +19,7 @@ public class SeleniumBase {
 
     public void login(String username, String password) throws IOException {
         JsonObject loginJson = Client.login(username, password);
+        new TaigaLoginPage();
         ((JavascriptExecutor) driver)
                 .executeScript(
                         "window.localStorage.setItem('token','" + loginJson.get("auth_token") + "');");

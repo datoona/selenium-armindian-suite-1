@@ -1,16 +1,11 @@
 import api.Client;
-import base.DriverHelper;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.util.Date;
 
-import static java.sql.DriverManager.getDriver;
 import static org.testng.Assert.assertTrue;
 
 public class TaigaProjectsTest extends SeleniumBase {
@@ -24,7 +19,9 @@ public class TaigaProjectsTest extends SeleniumBase {
         project.addProperty("description", "Test Project via Api Description");
         project.addProperty("creation_template", 1);
         project.addProperty("is_private", false);
-        Client.createProject(project);
+        project = Client.createProject(project);
+        login("sqa.days@yandex.ru", "Armenia2018");
+        TaigaProjectPage projectPage = new TaigaProjectPage(project);
 
     }
 
