@@ -3,12 +3,12 @@ package api;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import okhttp3.*;
-import org.openqa.selenium.json.Json;
 
 import java.io.IOException;
 
 public class Client {
     private static String ACCESS_TOKEN = null;
+    private static final String BASE_URL = "https://api.taiga.io/api/v1";
 
     public static JsonObject login(String email, String password) throws IOException {
         OkHttpClient client = new OkHttpClient();
@@ -30,19 +30,32 @@ public class Client {
         return  object;
     }
 
-    public static JsonObject createProject(JsonObject project) throws IOException {
+    public static Response post(String url, JsonObject jsonObject) {
         OkHttpClient client = new OkHttpClient();
         MediaType mediaType = MediaType.parse("application/json");
-        RequestBody body = RequestBody.create(mediaType, project.toString());
+        RequestBody body = RequestBody.create(mediaType, jsonObject.toString());
         Request request = new Request.Builder()
-                .url("https://api.taiga.io/api/v1/projects")
+                .url(BASE_URL + url)
                 .post(body)
                 .addHeader("Content-Type", "application/json")
                 .addHeader("Authorization", "Bearer " + ACCESS_TOKEN)
                 .build();
+        Response response = null;
+        try {
+            response = client.newCall(request).execute();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
-        Response response = client.newCall(request).execute();
-        String jsonString = response.body().string();
-        return  new JsonParser().parse(jsonString).getAsJsonObject();
+        assert response != null;
+        if (!response.isSuccessful()) {
+            throw new Error("HTTP error code: " + String.valueOf(response.code()));
+        }
+
+        return response;
     }
+
+
+
+
 }
