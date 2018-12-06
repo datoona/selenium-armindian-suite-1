@@ -55,6 +55,31 @@ public class Client {
         return response;
     }
 
+    public static Response get(String url) {
+        OkHttpClient client = new OkHttpClient();
+
+        Request request = new Request.Builder()
+                .url("https://api.taiga.io/api/v1" + url)
+                .get()
+                .addHeader("Authorization", "Bearer " + ACCESS_TOKEN)
+                .addHeader("Content-Type", "application/json")
+                .build();
+
+        Response response = null;
+        try {
+            response = client.newCall(request).execute();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        assert response != null;
+        if (!response.isSuccessful()) {
+            throw new Error("HTTP error code: " + String.valueOf(response.code()));
+        }
+
+        return response;
+    }
+
     public static void delete(String url, JsonObject jsonObject) {
         OkHttpClient client = new OkHttpClient();
 

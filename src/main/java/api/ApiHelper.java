@@ -1,11 +1,15 @@
 package api;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import okhttp3.Response;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class ApiHelper {
 
@@ -29,6 +33,28 @@ public class ApiHelper {
 
     public static void deleteIssue(JsonObject issue) {
         Client.delete("/issues", issue);
+    }
+
+    public static JsonObject getCurrentUser() throws IOException {
+        Response response;
+        response = Client.get("/users/me");
+        String jsonString = response.body().string();
+        return  new JsonParser().parse(jsonString).getAsJsonObject();
+    }
+
+    public static ArrayList<JsonObject> getAllProjects() throws IOException {
+        Response response = Client.get("/projects?member=" + getCurrentUser().get("id").getAsString());
+        String jsonString = response.body().string();
+        JsonArray jsonArray = new JsonParser().parse(jsonString).getAsJsonArray();
+        Gson googleJson = new Gson();
+        return googleJson.fromJson(jsonArray, ArrayList.class);
+    }
+
+
+    public JsonObject getProject(String projectId) throws IOException {
+        Response response = Client.get("/projects/" + projectId);
+        String jsonString = response.body().string();
+        return  new JsonParser().parse(jsonString).getAsJsonObject();
     }
 
     public static JsonObject createProject() throws IOException {

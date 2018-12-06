@@ -15,7 +15,9 @@ public class TaigaProjectsTest extends SeleniumBase {
     @BeforeMethod
     public void setUpMethod() throws IOException {
         Client.login("sqa.days@yandex.ru", "Armenia2018");
+        ApiHelper.getAllProjects();
         project = ApiHelper.createProject();
+
     }
 
     @AfterMethod
