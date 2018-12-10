@@ -89,7 +89,6 @@ public class Client {
                 .addHeader("Authorization", "Bearer " + ACCESS_TOKEN)
                 .addHeader("Content-Type", "application/json")
                 .build();
-
         Response response = null;
         try {
             response = client.newCall(request).execute();

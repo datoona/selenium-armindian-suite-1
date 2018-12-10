@@ -42,12 +42,10 @@ public class ApiHelper {
         return  new JsonParser().parse(jsonString).getAsJsonObject();
     }
 
-    public static ArrayList<JsonObject> getAllProjects() throws IOException {
+    public static JsonArray getAllProjects() throws IOException {
         Response response = Client.get("/projects?member=" + getCurrentUser().get("id").getAsString());
         String jsonString = response.body().string();
-        JsonArray jsonArray = new JsonParser().parse(jsonString).getAsJsonArray();
-        Gson googleJson = new Gson();
-        return googleJson.fromJson(jsonArray, ArrayList.class);
+        return new JsonParser().parse(jsonString).getAsJsonArray();
     }
 
 
