@@ -2,3 +2,4 @@
 /target/
 /selenium-armindian-suite.iml
 /src/main/resources/drivers/
+/allure-results

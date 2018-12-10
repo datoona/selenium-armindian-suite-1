@@ -1,15 +1,19 @@
 import api.Client;
 import base.DriverHelper;
 import com.google.gson.JsonObject;
-import org.openqa.selenium.Cookie;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
+import io.qameta.allure.Attachment;
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.*;
+import org.testng.IHookCallBack;
+import org.testng.IHookable;
+import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 
+import java.io.File;
 import java.io.IOException;
 
 
-public class SeleniumBase {
+public class SeleniumBase implements IHookable {
     private WebDriver driver = DriverHelper.get().getDriver();
 
     @AfterMethod
@@ -28,4 +32,24 @@ public class SeleniumBase {
 
     }
 
+    @Override
+    public void run(IHookCallBack callBack, ITestResult testResult) {
+        callBack.runTestMethod(testResult);
+        if (testResult.getThrowable() != null) {
+            try {
+                takeScreenshot(testResult.getMethod().getMethodName());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+    }
+
+    @Attachment(value = "Failure in method {0}", type = "image/png")
+    private byte[] takeScreenshot(String methodName) throws IOException {
+        File screenshot = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+        FileUtils.copyFile(screenshot, new File("./target/screenshots/" + methodName + ".png"));
+        System.out.println("****** Taking a screenshot on failure");
+        return  ((TakesScreenshot)driver).getScreenshotAs(OutputType.BYTES);
+    }
 }
