@@ -9,7 +9,7 @@ public class CheckboxesTest extends SeleniumBase {
     public void checkboxesByIndex() {
         CheckBoxPage checkBoxPage = new CheckBoxPage();
 
-        assertFalse(checkBoxPage.isCheckboxChecked(0), "First checkbox was checked!");
+        assertTrue(checkBoxPage.isCheckboxChecked(0), "First checkbox was checked!");
         assertTrue(checkBoxPage.isCheckboxChecked(1), "First checkbox was not checked!");
 
         checkBoxPage.clickCheckbox(0);

@@ -1,5 +1,6 @@
 package base;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
@@ -12,6 +13,7 @@ import java.util.List;
 
 
 public abstract class BasePage<T extends LoadableComponent<T>> extends LoadableComponent<T> {
+    private static final Logger LOGGER = Logger.getLogger("BasePage");
     protected WebDriver driver;
 
     public BasePage() {
@@ -34,7 +36,7 @@ public abstract class BasePage<T extends LoadableComponent<T>> extends LoadableC
     public abstract String getUrl();
 
     public void type(WebElement element, String text) {
-        System.out.println("Typing " + text + " to element with location: " + element.toString());
+        LOGGER.info("Typing " + text + " to element with location: " + element.toString());
         element.sendKeys(text);
     }
 
@@ -55,7 +57,7 @@ public abstract class BasePage<T extends LoadableComponent<T>> extends LoadableC
     }
 
     public void click(WebElement element) {
-        System.out.println("Clicking on element with location:" + element.toString());
+        LOGGER.info("Clicking on element with location:" + element.toString());
         element.click();
     }
 

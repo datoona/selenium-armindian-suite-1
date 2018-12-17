@@ -2,18 +2,22 @@ import api.Client;
 import base.DriverHelper;
 import com.google.gson.JsonObject;
 import io.qameta.allure.Attachment;
+import listerners.SuiteListener;
 import org.apache.commons.io.FileUtils;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.*;
 import org.testng.IHookCallBack;
 import org.testng.IHookable;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.Listeners;
 
 import java.io.File;
 import java.io.IOException;
 
-
+@Listeners(SuiteListener.class)
 public class SeleniumBase implements IHookable {
+    private static final Logger LOGGER = Logger.getLogger("SeleniumBase");
     private WebDriver driver = DriverHelper.get().getDriver();
 
     @AfterMethod
@@ -49,7 +53,7 @@ public class SeleniumBase implements IHookable {
     private byte[] takeScreenshot(String methodName) throws IOException {
         File screenshot = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
         FileUtils.copyFile(screenshot, new File("./target/screenshots/" + methodName + ".png"));
-        System.out.println("****** Taking a screenshot on failure");
+        LOGGER.error("****** Taking a screenshot on failure");
         return  ((TakesScreenshot)driver).getScreenshotAs(OutputType.BYTES);
     }
 }
