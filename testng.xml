@@ -1,4 +1,7 @@
 <suite name="Suite-3" verbose="1">
+    <listeners>
+        <listener class-name="listerners.RetryListener"/>
+    </listeners>
     <test name="all-packages" parallel="methods" thread-count="5">
         <packages>
             <package name=".*" />

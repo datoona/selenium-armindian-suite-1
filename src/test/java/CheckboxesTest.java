@@ -1,3 +1,4 @@
+import listerners.Retry;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertFalse;
@@ -5,7 +6,7 @@ import static org.testng.Assert.assertTrue;
 
 public class CheckboxesTest extends SeleniumBase {
 
-    @Test
+    @Test(retryAnalyzer = Retry.class)
     public void checkboxesByIndex() {
         CheckBoxPage checkBoxPage = new CheckBoxPage();
 
